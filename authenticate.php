@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
-require "db.php";
+
 require "cache.php";
 
 $username = $_POST['username'];
@@ -18,6 +18,7 @@ if ($cachedUser) {
     exit();
 }
 
+require "db.php";
 // If not cached → check DB
 $sql = "SELECT * FROM users WHERE username=? AND password=?";
 $stmt = $conn->prepare($sql);
